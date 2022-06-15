@@ -1,8 +1,9 @@
-Value OS_VERSION (.*)
+Value OS_VERSION (\S+)
+Value OS_RELEASE (\S+)
 Value VENDOR (\S+)
-Value MODEL (\S+)
-Value UPTIME (.*)
+Value MODEL (.+?)
+Value UPTIME (.+)
 
 Start
-  ^.*Comware.*Version\s+[0-9\.]+,\s+${OS_VERSION}
-  ^${VENDOR}\s+${MODEL}\s+uptime\s+is\s+${UPTIME} -> Record
+  ^.*Comware Software.*Version ${OS_VERSION}, Release ${OS_RELEASE}
+  ^${VENDOR} ${MODEL} Switch uptime is ${UPTIME} -> Record
